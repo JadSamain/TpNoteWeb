@@ -5,14 +5,19 @@ body {
 }
 
 header {
+    position: sticky;
+    top: 0;
     background-color: #333;
     color: white;
-    padding: 0px 20px;
+    padding: 10px 20px;
+    z-index: 1000; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombre de la box */
 }
 
 .header-container {
     display: flex;
     align-items: center;
+    justify-content: space-between; /* Espace entre les éléments */
 }
 
 nav ul {
@@ -20,11 +25,23 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    margin-left: 20px; 
 }
+
 nav ul li {
     margin-left: 20px;
 }
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffcc00; /* Couleur de survol */
+}
+
 
 nav ul li a {
     color: white;
