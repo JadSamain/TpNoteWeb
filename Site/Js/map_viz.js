@@ -1,24 +1,11 @@
-import L from 'leaflet';
+// Initialisation de la carte et configuration de la vue
+var map = L.map('map').setView([45.441343, 4.386274], 14); // Latitude, Longitude, Zoom (ici : Paris)
 
-const map = L.map('map').setView([51.505, -0.09], 13);
-
-// Add a tile layer to the map (OpenStreetMap tiles)
+// Ajouter une couche de tuiles (tiles) OpenStreetMap
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-// Function to load JSON data and add markers to the map
-function loadJsonData(url) {
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(item => {
-                const marker = L.marker([item.lat, item.lng]).addTo(map);
-                marker.bindPopup(`<b>${item.name}</b><br>${item.description}`).openPopup();
-            });
-        })
-        .catch(error => console.error('Error loading JSON data:', error));
-}
-
-// Example usage: Load data from a JSON file
-loadJsonData('data/locations.json');
+// Ajouter un marqueur
+var marker = L.marker([45.441343, 4.386274]).addTo(map);
+marker.bindPopup("Beurk, Saint Étienne").openPopup();
