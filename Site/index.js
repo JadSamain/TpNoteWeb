@@ -9,30 +9,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (file) {
             const reader = new FileReader();
-
-            reader.onload = function (e) {
-                csvData = e.target.result; // Stocker les données CSV dans une variable
-                alert('Fichier chargé avec succès. Cliquez sur "Convertir" pour afficher les données.');
-            };
-
+            reader.onload = function (e) {csvData = e.target.result;};
             reader.readAsText(file);
-        } else {
-            alert('Veuillez sélectionner un fichier CSV.');
         }
     });
 
     // Événement pour convertir et afficher les données dans un tableau
     convertButton.addEventListener('click', function () {
-        if (csvData) {
-            const jsonData = csvToJson(csvData);
-
-            // Afficher le tableau
-            displayTable(jsonData);
-        } else {
-            alert('Aucun fichier CSV chargé. Veuillez d\'abord en sélectionner un.');
-        }
+        const jsonData = csvToJson(csvData);
+        displayTable(jsonData);
     });
 });
+
 
 // Fonction pour convertir le CSV en JSON
 function csvToJson(csv) {
@@ -64,7 +52,6 @@ function displayTable(jsonData) {
 
     // Créer le tableau
     const table = document.createElement('table');
-    table.border = '1';
     table.style.borderCollapse = 'collapse';
     table.style.width = '100%';
 
@@ -99,7 +86,5 @@ function displayTable(jsonData) {
     });
 
     table.appendChild(tbody);
-
-    // Ajouter le tableau au body
     document.body.appendChild(table);
 }
