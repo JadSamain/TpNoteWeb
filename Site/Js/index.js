@@ -1,3 +1,5 @@
+let jsonData = null; 
+
 document.addEventListener('DOMContentLoaded', function () {
     const fileInput = document.getElementById('csvFileInput');
     const convertButton = document.getElementById('convertButton');
@@ -6,30 +8,16 @@ document.addEventListener('DOMContentLoaded', function () {
     // Événement pour récupérer le fichier sélectionné
     fileInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
+        const reader = new FileReader();
 
-        if (file) {
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                csvData = e.target.result; // Stocker les données CSV dans une variable
-            };
-
-            reader.readAsText(file);
-        } else {
-            alert('Veuillez sélectionner un fichier CSV.');
-        }
+        reader.onload = function (e) {csvData = e.target.result;};
+        reader.readAsText(file);
     });
 
     // Événement pour convertir et afficher les données dans un tableau
     convertButton.addEventListener('click', function () {
-        if (csvData) {
-            const jsonData = csvToJson(csvData);
-
-            // Afficher le tableau
-            displayTable(jsonData);
-        } else {
-            alert('Aucun fichier CSV chargé. Veuillez d\'abord en sélectionner un.');
-        }
+        jsonData = csvToJson(csvData);
+        displayTable(jsonData);
     });
 });
 
@@ -53,13 +41,10 @@ function csvToJson(csv) {
     return result;
 }
 
-// Fonction pour afficher un tableau HTML à partir du JSON
 function displayTable(jsonData) {
-    // Supprime les tableaux existants pour éviter les duplications
+
     const existingTable = document.querySelector('table');
-    if (existingTable) {
-        existingTable.remove();
-    }
+    if (existingTable) {existingTable.remove();};
 
     // Créer le tableau
     const table = document.createElement('table');
