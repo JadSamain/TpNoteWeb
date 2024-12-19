@@ -57,3 +57,33 @@ table {
     width: 100%;
     border-collapse: collapse;
 }
+
+.dashboard {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.indicator-box {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    width: 30%;
+    min-width: 100px;
+}
+.chart-container {
+    width: 45%;
+    min-width: 300px;
+    height: 300px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+}
+.charts {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
