@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             csvData = e.target.result;
             localStorage.setItem('csvData', csvData); // Stocker le CSV dans le localStorage
             jsonData = csvToJson(csvData);
+            localStorage.setItem('jsonData', JSON.stringify(jsonData)); // Stocker le JSON dans le localStorage
             displayTable(jsonData);
         };
         reader.readAsText(file);
