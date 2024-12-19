@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         reader.onload = function (e) {
             csvData = e.target.result;
+            localStorage.setItem('csvData', csvData); // Stocker le CSV dans le localStorage
             jsonData = csvToJson(csvData);
             displayTable(jsonData);
         };
