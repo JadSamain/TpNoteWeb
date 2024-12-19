@@ -2,22 +2,19 @@ let jsonData = null;
 
 document.addEventListener('DOMContentLoaded', function () {
     const fileInput = document.getElementById('csvFileInput');
-    const convertButton = document.getElementById('convertButton');
     let csvData = ''; // Variable pour stocker temporairement les données CSV
 
-    // Événement pour récupérer le fichier sélectionné
+    // Événement pour récupérer le fichier sélectionné et convertir automatiquement
     fileInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
         const reader = new FileReader();
 
-        reader.onload = function (e) {csvData = e.target.result;};
+        reader.onload = function (e) {
+            csvData = e.target.result;
+            jsonData = csvToJson(csvData);
+            displayTable(jsonData);
+        };
         reader.readAsText(file);
-    });
-
-    // Événement pour convertir et afficher les données dans un tableau
-    convertButton.addEventListener('click', function () {
-        jsonData = csvToJson(csvData);
-        displayTable(jsonData);
     });
 });
 
@@ -42,14 +39,14 @@ function csvToJson(csv) {
 }
 
 function displayTable(jsonData) {
-
     const existingTable = document.querySelector('table');
-    if (existingTable) {existingTable.remove();};
+    if (existingTable) {
+        existingTable.remove();
+    }
 
     // Créer le tableau
     const table = document.createElement('table');
     table.border = '1';
-    table.style.borderCollapse = 'collapse';
     table.style.width = '100%';
 
     // Ajouter une ligne d'en-tête
@@ -84,6 +81,6 @@ function displayTable(jsonData) {
 
     table.appendChild(tbody);
 
-    // Ajouter le tableau au body
-    document.body.appendChild(table);
+    // Ajouter le tableau au conteneur
+    document.querySelector('.table-container').appendChild(table);
 }
