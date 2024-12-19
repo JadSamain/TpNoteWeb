@@ -48,3 +48,12 @@ nav ul li a {
     text-decoration: none;
 }
 
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
