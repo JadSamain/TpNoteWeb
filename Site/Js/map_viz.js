@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Chargement des limites des départements (GeoJSON)
-    fetch('Js/departements-1000m.geojson')
+    fetch('https://france-geojson.gregoiredavid.fr/repo/departements.geojson')
       .then(response => response.json())
       .then(departmentBoundaries => {
         L.geoJSON(departmentBoundaries, {
