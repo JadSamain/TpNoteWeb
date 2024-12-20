@@ -4,29 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analyse Festivals France</title>
-
     <link rel="stylesheet" href="Css/style.css">
-    <script src="Js/index.js" defer></script>
-
 </head>
 <body>
     <header>
         <div class="header-container">
-            <h1>Analyse Festivals France (David TRUONG - Jad SAMAIN)</h1>
+            <h1>Analyse Festivals France</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">Accueil</a></li>
+                    <li><a href="donnee.html">Données</a></li>
                     <li><a href="indicateurs.html">Indicateurs</a></li>
-                    <li><a href="map.html">Map</a></li>
+                    <li><a href="map.html">Carte</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+    <main>
+        <section class="intro">
+            <h2>Bienvenue sur Analyse Festivals France</h2>
+            <p>
+                Ce site présente une analyse complète des festivals en France. 
+                Nous explorons les données relatives au nombre de festivals, les régions les plus actives, et les principaux types de festivals.
+            </p>
+        </section>
 
-    <p>Sélectionnez un fichier CSV : <input type="file" id="csvFileInput" accept=".csv"></p>
-    <div class="table-container">
-        <!-- Le tableau sera ajouté ici par JavaScript -->
-    </div>
-    
+        <section class="theme">
+            <h3>Thème</h3>
+            <p>
+                Les festivals jouent un rôle clé dans la culture et l'économie française. 
+                Ce projet vise à explorer leur répartition géographique et leur diversité à travers des visualisations interactives.
+            </p>
+        </section>
+
+        <section class="indicators">
+            <h3>Indicateurs Choisis</h3>
+            <ul>
+                <li><strong>Nombre total de festivals</strong> : Évaluer la richesse événementielle en France.</li>
+                <li><strong>Top 10 des régions</strong> : Identifier les régions les plus actives.</li>
+                <li><strong>Types principaux de festivals</strong> : Comprendre la diversité des événements proposés.</li>
+            </ul>
+        </section>
+
+        <section class="hypotheses">
+            <h3>Hypothèses</h3>
+            <p>
+                Nous avons supposé que les données des festivals répertoriés sont représentatives de la réalité actuelle. 
+                Nous pensons également que les régions à forte population accueillent plus de festivals.
+            </p>
+        </section>
+
+        <section class="results">
+            <h3>Bilan des Résultats</h3>
+            <p>
+                Les analyses montrent une concentration des festivals dans certaines régions comme l'Île-de-France et la Provence-Alpes-Côte d'Azur. 
+                Les festivals musicaux et gastronomiques sont parmi les plus populaires.
+            </p>
+        </section>
+
+        <div class="charts">
+            <div class="chart-container">
+                <h4>Top 10 Régions avec le Plus de Festivals</h4>
+                <img src="images/top-10-regions.png" alt="Graphique Top 10 Régions" style="width: 100%;">
+            </div>
+            <div class="chart-container">
+                <h4>Répartition par Type de Festival</h4>
+                <img src="images/types-festivals.png" alt="Graphique Types de Festivals" style="width: 100%;">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Analyse Festivals France. Tous droits réservés.</p>
+    </footer>
 </body>
 </html>
