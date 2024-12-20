@@ -9,7 +9,7 @@ header {
     top: 0;
     background-color: #333;
     color: white;
-    padding: 10px 20px;
+    padding: 0px 20px;
     z-index: 1000; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombre de la box */
 }
@@ -76,8 +76,7 @@ table {
 }
 .chart-container {
     width: 45%;
-    min-width: 300px;
-    height: 300px;
+    height: 580px;
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 10px;
