@@ -5,39 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carte avec Leaflet</title>
 
-  <script src="Js/map_viz.js" defer></script> <!-- Assurez-vous que le chemin est correct -->
-  <link rel="stylesheet" href="Css/style.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+  <!-- <link rel="stylesheet" href="Css/style.css"> -->
 
-  <!-- a mettre dans le css -->
-  <style> 
+  <style>
     html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;}
-        
-    #map {
+      margin: 0;
+      padding: 0;
       height: 100%;
+    }
+    #map {
+      height: 90%;
       width: 100%;
+      margin: 0 auto; /* Center the map horizontally */
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    nav ul li {
+      margin-left: 20px;
+    }
+    nav ul li a {
+      text-decoration: none;
     }
   </style>
 </head>
-
 <body>
-    <header>
-        <div class="header-container">
-            <h1>Analyse Festivals France</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="indicateurs.html">Indicateurs</a></li>
-                    <li><a href="map.html">Map</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
+  <header>
+    <h1>Carte des Festivals par Département</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Acceuil</a></li>
+        <li><a href="indicateurs.html">Indicateurs</a></li>
+      </ul>
+    </nav>
+  </header>
   <div id="map"></div>
+  <script src="Js/map_viz.js"></script>
 </body>
 </html>
