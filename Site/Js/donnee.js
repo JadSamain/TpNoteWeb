@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const yearFilter = document.getElementById('yearFilter');
     const applyFiltersButton = document.getElementById('applyFilters');
     const resetFiltersButton = document.getElementById('resetFilters');
-    let csvData = '';
     let jsonData = null;
     let filteredData = null;
 
@@ -19,21 +18,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     fileInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
+        if (!file) return; // Vérifie si un fichier a été sélectionné
+
         const reader = new FileReader();
 
         reader.onload = function (e) {
-            csvData = e.target.result; // Récupère les données CSV
+            const csvData = e.target.result; // Récupère les données CSV
             jsonData = csvToJson(csvData); // Convertit en JSON
             sessionStorage.setItem('jsonData', JSON.stringify(jsonData)); // Stocke dans sessionStorage
-            filteredData = jsonData; // Initialiser les données filtrées
+            filteredData = jsonData; // Initialise les données filtrées
             displayTable(filteredData); // Affiche le tableau
-            console.log("push jsonData dans le session storage");
         };
 
         reader.readAsText(file); // Lit le fichier
     });
 
     applyFiltersButton.addEventListener('click', function () {
+        if (!jsonData) return;
+
         const department = departmentFilter.value.trim().toLowerCase();
         const musicType = musicTypeFilter.value.trim().toLowerCase();
         const year = yearFilter.value.trim();
@@ -59,7 +61,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour convertir CSV en JSON
     function csvToJson(csv) {
-        const lines = csv.split('\\n').filter(line => line.trim() !== '');
+        const lines = csv.split('\n').filter(line => line.trim() !== '');
+        if (lines.length < 2) {
+            alert('Le fichier CSV ne contient pas de données valides.');
+            return [];
+        }
+
         const result = [];
         const headers = lines[0].split(';');
 
@@ -77,9 +84,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour afficher les données sous forme de tableau
     function displayTable(jsonData) {
-        const existingTable = document.querySelector('table');
-        if (existingTable) {
-            existingTable.remove();
+        const tableContainer = document.querySelector('.table-container');
+        tableContainer.innerHTML = ''; // Supprime les anciens contenus
+
+        if (!jsonData || jsonData.length === 0) {
+            tableContainer.innerHTML = '<p>Aucune donnée à afficher.</p>';
+            return;
         }
 
         const table = document.createElement('table');
@@ -115,6 +125,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         table.appendChild(tbody);
-        document.querySelector('.table-container').appendChild(table);
+        tableContainer.appendChild(table);
     }
 });
