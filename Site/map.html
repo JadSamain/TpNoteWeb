@@ -5,83 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carte avec Leaflet</title>
 
+  <link rel="stylesheet" href="Css/map.css">
+  <link rel="stylesheet" href="Css/style.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
-  <link rel="stylesheet" href="Css/map.css">
   <script src="Js/map_viz.js"></script>
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: Arial, sans-serif;
-    }
-    #map {
-      height: 90%;
-      width: 100%;
-      margin: 0 auto; /* Center the map horizontally */
-    }
-    header {
-      position: sticky;
-      top: 0;
-      background-color: #333;
-      color: white;
-      padding: 10px 20px;
-      z-index: 1000; 
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombre de la box */
-    }
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between; /* Espace entre les éléments */
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-    }
-    nav ul li {
-      margin-left: 20px;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: white;
-      transition: color 0.3s;
-      font-weight: bold;
-      }
-    
-    nav ul li a:hover {
-    color: #ffcc00;
-    }
-    
-    .legend {
-      background: white;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      line-height: 1.5;
-      font-size: 14px;
-    }
-    .legend h4 {
-      margin: 0 0 10px;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    .legend div {
-      display: flex;
-      align-items: center;
-      margin-bottom: 5px;
-    }
-    .legend i {
-      width: 20px;
-      height: 20px;
-      margin-right: 10px;
-      border-radius: 3px;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -90,6 +20,7 @@
       <ul>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="indicateurs.html">Indicateurs</a></li>
+        <li><a href="map.html">Map</a></li>
       </ul>
     </nav>
   </header>
