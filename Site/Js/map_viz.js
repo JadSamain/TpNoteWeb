@@ -71,28 +71,30 @@ document.addEventListener('DOMContentLoaded', function () {
                   })
                   .catch(error => console.error('Erreur lors du chargement du GeoJSON:', error));
                 
-                // Add legend to the map
+
+                // Ajouter une légende au coin inférieur droit et la remonter
                 const legend = L.control({ position: 'bottomright' });
-                
+
                 legend.onAdd = function (map) {
                   const div = L.DomUtil.create('div', 'info legend');
                   const grades = [0, 25, 50, 100];
-                  const labels = ['<strong>Nombre de festivals</strong>'];
                   const colors = ['green', 'yellow', 'orange', 'red'];
-                
+
+                  // Titre de la légende
+                  div.innerHTML = '<h4 style="margin-bottom: 10px;">Nombre de Festivals</h4>';
+
+                  // Ajouter des plages de couleurs
                   for (let i = 0; i < grades.length; i++) {
-                    labels.push(
-                      '<i style="background:' + colors[i] + '"></i> ' +
-                      grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] : '+')
-                    );
+                    div.innerHTML +=
+                      `<div style="display: flex; align-items: center; margin-bottom: 5px;">
+                        <i style="width: 20px; height: 20px; background-color: ${colors[i]}; border-radius: 3px; margin-right: 10px;"></i>
+                        ${grades[i]}${grades[i + 1] ? ` &ndash; ${grades[i + 1]}` : '+'}
+                      </div>`;
                   }
-                
-                  div.innerHTML = labels.join('<br>');
+
                   return div;
                 };
-                
+
                                 legend.addTo(map);
-                              }
-                            }
-                          );
-                
+                  }
+                });
