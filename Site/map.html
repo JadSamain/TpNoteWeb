@@ -8,13 +8,14 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
-  <!-- <link rel="stylesheet" href="Css/style.css"> -->
+  <link rel="stylesheet" href="Css/map.css">
 
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
+      font-family: Arial, sans-serif;
     }
     #map {
       height: 90%;
@@ -22,10 +23,18 @@
       margin: 0 auto; /* Center the map horizontally */
     }
     header {
+      position: sticky;
+      top: 0;
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      z-index: 1000; 
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombre de la box */
+    }
+    .header-container {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 10px;
+      justify-content: space-between; /* Espace entre les éléments */
     }
     nav ul {
       list-style: none;
@@ -55,3 +64,4 @@
   <script src="Js/map_viz.js"></script>
 </body>
 </html>
+</div>
