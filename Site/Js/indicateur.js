@@ -1,9 +1,8 @@
-const data = JSON.parse(localStorage.getItem('jsonData'));
+const data = JSON.parse(sessionStorage.getItem('jsonData'));
 
 if (!data) {
-console.error('Aucune donnée trouvée dans le local storage avec le nom "jsondata"');
+console.error('Aucune donnée trouvée dans le local storage avec le nom "jsonData"');
     } else {
-    // Mise à jour des indicateurs
     d3.select("#indicator1").text(`Indicateur 1: ${data.indicator1 || 'N/A'}`);
     d3.select("#indicator2").text(`Indicateur 2: ${data.indicator2 || 'N/A'}`);
     d3.select("#indicator3").text(`Indicateur 3: ${data.indicator3 || 'N/A'}`);

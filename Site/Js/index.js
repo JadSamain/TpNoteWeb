@@ -1,57 +1,60 @@
-let jsonData = null; 
-
 document.addEventListener('DOMContentLoaded', function () {
     const fileInput = document.getElementById('csvFileInput');
-    let csvData = ''; // Variable pour stocker temporairement les données CSV
+    let csvData = '';
+    let jsonData = null;
 
-    // Événement pour récupérer le fichier sélectionné et convertir automatiquement
+    // Vérifie si des données existent dans le sessionStorage
+    const savedJsonData = sessionStorage.getItem('jsonData');
+    if (savedJsonData) {
+        jsonData = JSON.parse(savedJsonData);
+        displayTable(jsonData); // Affiche les données existantes
+    }
+
     fileInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
         const reader = new FileReader();
 
         reader.onload = function (e) {
-            csvData = e.target.result;
-            localStorage.setItem('csvData', csvData); // Stocker le CSV dans le localStorage
-            jsonData = csvToJson(csvData);
-            localStorage.setItem('jsonData', JSON.stringify(jsonData)); // Stocker le JSON dans le localStorage
-            displayTable(jsonData);
+            csvData = e.target.result; // Récupère les données CSV
+            jsonData = csvToJson(csvData); // Convertit en JSON
+            sessionStorage.setItem('jsonData', JSON.stringify(jsonData)); // Stocke dans sessionStorage
+            displayTable(jsonData); // Affiche le tableau
+            console.log("push jsonData dans le session storage");
         };
-        reader.readAsText(file);
+
+        reader.readAsText(file); // Lit le fichier
     });
 });
 
-// Fonction pour convertir le CSV en JSON
+// Fonction pour convertir CSV en JSON
 function csvToJson(csv) {
-    const lines = csv.split('\n').filter(line => line.trim() !== ''); // Supprime les lignes vides
+    const lines = csv.split('\n').filter(line => line.trim() !== '');
     const result = [];
-    const headers = lines[0].split(';'); // Utilise la première ligne comme en-tête avec ; comme séparateur
+    const headers = lines[0].split(';');
 
     for (let i = 1; i < lines.length; i++) {
         const obj = {};
-        const currentline = lines[i].split(';'); // Utilise ; comme séparateur
-
+        const currentline = lines[i].split(';');
         headers.forEach((header, index) => {
-            obj[header] = currentline[index] || ''; // Remplit avec une chaîne vide si aucune donnée
+            obj[header] = currentline[index] || '';
         });
-
         result.push(obj);
     }
 
     return result;
 }
 
+// Fonction pour afficher les données sous forme de tableau
 function displayTable(jsonData) {
     const existingTable = document.querySelector('table');
     if (existingTable) {
         existingTable.remove();
     }
 
-    // Créer le tableau
     const table = document.createElement('table');
     table.border = '1';
     table.style.width = '100%';
 
-    // Ajouter une ligne d'en-tête
     const headers = Object.keys(jsonData[0]);
     const thead = document.createElement('thead');
     const headerRow = document.createElement('tr');
@@ -68,7 +71,6 @@ function displayTable(jsonData) {
     thead.appendChild(headerRow);
     table.appendChild(thead);
 
-    // Ajouter les données
     const tbody = document.createElement('tbody');
     jsonData.forEach(row => {
         const tr = document.createElement('tr');
@@ -82,7 +84,5 @@ function displayTable(jsonData) {
     });
 
     table.appendChild(tbody);
-
-    // Ajouter le tableau au conteneur
     document.querySelector('.table-container').appendChild(table);
 }
