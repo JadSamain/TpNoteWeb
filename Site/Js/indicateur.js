@@ -5,7 +5,7 @@ if (!data) {
     console.error('Aucune donnée trouvée dans le local storage avec le nom "jsonData"');
 } else {
     // Afficher les indicateurs
-    d3.select("#indicator1").html(`${Object.keys(data).length} festivals`);
+    d3.select("#indicator1").html(`${Object.keys(data).length} festivals en France`);
     d3.select("#indicator2").text(`Indicateur 2: ${data.indicator2 || 'N/A'}`);
     d3.select("#indicator3").text(`Indicateur 3: ${data.indicator3 || 'N/A'}`);
 
